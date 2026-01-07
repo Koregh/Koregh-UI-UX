@@ -10,7 +10,7 @@ local Config = require(ReplicatedStorage:WaitForChild("Config"))
 local TweenUtil = {}
 TweenUtil.__index = TweenUtil
 
--- [[ DEFINIÇÃO DE TIPOS ]] --
+-- DEFINIÇÃO DE TIPOS --
 
 export type TweenProperties = {
 	BackgroundTransparency: number?,
@@ -26,7 +26,7 @@ export type TweenProperties = {
 -- Rastreia animações ativas para evitar que uma atropele a outra
 local activeTweens: {[GuiObject]: Tween} = {}
 
--- [[ FUNÇÃO CENTRAL ]] --
+-- FUNÇÃO CENTRAL  --
 
 local function safePlayTween(
 	frame: GuiObject?,
@@ -99,7 +99,7 @@ end
 
 TweenUtil.PlayTween = safePlayTween
 
--- [[ ATALHOS (HELPERS) ]] --
+--  ATALHOS (HELPERS) --
 
 -- Abre um frame com fade e som opcional
 function TweenUtil.FadeIn(frame: GuiObject, duration: number?, sound: Sound?, onComplete: (() -> ())?)
@@ -121,7 +121,7 @@ function TweenUtil.TweenSize(frame: GuiObject, size: UDim2, duration: number?, s
 	return safePlayTween(frame, {Size = size, Sound = sound}, duration, nil, nil, onComplete)
 end
 
--- [[ EFEITO MÁQUINA DE ESCREVER ]] --
+--  EFEITO MÁQUINA DE ESCREVER  --
 
 function TweenUtil.TypeText(maid: Maid, label: TextLabel | TextButton, fullText: string, delay: number?, sound: Sound?, onComplete: (() -> ())?)
 	delay = delay or Config.Text.DefaultTypingSpeed
