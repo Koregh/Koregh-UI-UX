@@ -8,7 +8,7 @@ local NumberUtil = {}
 -- Lista de sufixos para escalas de magnitude (Suporta até Decilhões)
 local SUFFIXES = {"", "K", "M", "B", "T", "Q", "Qi", "Sx", "Sp", "Oc", "No", "Dc"}
 
--- [[ FORMATAÇÃO DE MOEDAS / VALORES ]] --
+-- FORMATAÇÃO DE MOEDAS / VALORES --
 
 -- @desc Formata números com sufixos (Ex: 1.5M, -10K)
 -- @param value: O número a ser formatado
