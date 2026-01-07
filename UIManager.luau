@@ -11,7 +11,7 @@ local Config = require(script.Parent:WaitForChild("Config"))
 
 local UIManager = {}
 
--- [[ CONFIGURAÇÃO DE CAMADAS (LAYERS) ]] --
+--  CONFIGURAÇÃO DE CAMADAS (LAYERS) --
 -- Isso garante que nada importante fique escondido atrás de janelas comuns
 local LAYERS = {
 	HUD = 1,
@@ -20,12 +20,12 @@ local LAYERS = {
 	NOTIFICATION = 30 -- Avisos de Erro, Mensagens do Sistema
 }
 
--- [[ ESTADO INTERNO ]] --
+-- ESTADO INTERNO  --
 local CurrentFrame: GuiObject? = nil
 local CurrentState: any = nil
 local ActiveOverlays: {[GuiObject]: any} = {}
 
--- [[ FUNÇÕES AUXILIARES ]] --
+--  FUNÇÕES AUXILIARES --
 
 -- Busca o primeiro botão clicável para dar foco (Gamepad/Teclado)
 local function setFocusToFrame(frame: GuiObject)
@@ -35,7 +35,7 @@ local function setFocusToFrame(frame: GuiObject)
 	end
 end
 
--- [[ MÉTODOS PÚBLICOS ]] --
+--  MÉTODOS PÚBLICOS --
 
 -- Abre uma tela principal (Fecha a anterior e limpa o estado)
 function UIManager.Open(frame: GuiObject)
