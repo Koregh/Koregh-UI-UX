@@ -47,7 +47,7 @@ function GameClient.Start(): GameClientType
 	end)
 
 	instance = self :: any
-	print("[GameClient] Framework de Elite Inicializado!")
+	print("[GameClient] Framework Inicializado!")
 	return instance :: GameClientType
 end
 
