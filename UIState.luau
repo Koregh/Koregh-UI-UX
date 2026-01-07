@@ -6,7 +6,7 @@ local Maid = require(script.Parent:WaitForChild("Maid"))
 local UIState = {}
 UIState.__index = UIState
 
--- [[ DEFINIÇÃO DE TIPOS ]] --
+-- DEFINIÇÃO DE TIPOS --
 
 export type UIStateType = {
 	maid: Maid,
@@ -29,7 +29,7 @@ export type UIStateType = {
 	Cleanup: (self: UIStateType) -> (),
 }
 
--- [[ CONSTRUTOR ]] --
+-- CONSTRUTOR  --
 
 -- Cria uma nova sessão de estado. Útil para cada janela aberta no jogo.
 local function new(): UIStateType
@@ -38,7 +38,7 @@ local function new(): UIStateType
 	return self
 end
 
--- [[ MÉTODOS DE AÇÃO ]] --
+--  MÉTODOS DE AÇÃO --
 
 -- Aplica várias configurações de uma vez só usando uma tabela.
 function UIState:Apply(element: GuiObject, props: {[string]: any})
@@ -68,7 +68,7 @@ function UIState:SetPosition(element: GuiObject, position: UDim2) self:SetProper
 function UIState:SetVisible(element: GuiObject, visible: boolean) self:SetProperty(element, "Visible", visible) end
 function UIState:SetTransparency(element: GuiObject, transparency: number) self:SetProperty(element, "BackgroundTransparency", transparency) end
 
--- [[ GERENCIAMENTO DE EVENTOS E REATIVIDADE ]] --
+--  GERENCIAMENTO DE EVENTOS E REATIVIDADE --
 
 -- Conecta a UI a um evento externo (ex: o dinheiro do player mudou).
 -- O Maid garante que essa conexão seja cortada quando a UI fechar.
@@ -91,7 +91,7 @@ function UIState:ConnectEvent(element: GuiObject, eventName: string, callback: (
 	self.maid:Give(conn)
 end
 
--- [[ LIMPEZA ]] --
+-- LIMPEZA  --
 
 -- Desconecta TUDO o que foi registrado nessa sessão de UI. Adeus memory leaks!
 function UIState:Cleanup()
