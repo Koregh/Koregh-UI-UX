@@ -58,7 +58,7 @@ function NumberUtil.FormatCommas(value: number): string
 	return string.gsub(withSpaces, " ", ",")
 end
 
--- [[ FORMATAÇÃO DE TEMPO ]] --
+-- FORMATAÇÃO DE TEMPO --
 
 -- @desc Converte segundos em string formatada (Ex: 75 -> "01:15")
 -- @param seconds: Total de segundos
@@ -78,7 +78,7 @@ function NumberUtil.FormatTime(seconds: number, useHours: boolean?): string
 	end
 end
 
--- [[ LÓGICA DE ANIMAÇÃO (MATH) ]] --
+-- LÓGICA DE ANIMAÇÃO (MATH) --
 
 -- @desc Interpolação Linear entre dois números
 -- @param start: Valor de origem
