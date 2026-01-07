@@ -1,46 +1,41 @@
 --!strict
 -- GameClient.lua
-
-
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Modules = ReplicatedStorage:WaitForChild("Modules")
 
--- Importação dos Módulos Core
 local Network = require(Modules.Client.Network)
 local ClientCurrencies = require(Modules.Client.ClientCurrencies)
 local Maid = require(Modules.Shared.Maid)
 
--- Tipagem para autocomplete
+-- Tipos
 export type GameClientType = {
 	Network: any,
 	Store: any,
-	Maid: any,
-	Start: () -> GameClientType,
+	Maid: Maid.Maid,
 }
 
 local GameClient = {}
-GameClient.__index = GameClient
+local instance: GameClientType? = nil -- Cache da instância única
 
-function GameClient.Start()
-	local self = setmetatable({}, GameClient)
+function GameClient.Start(): GameClientType
+	-- Se já foi iniciado, apenas retorna a instância existente
+	if instance then return instance end
 	
+	local self = {}
 	self.Maid = Maid.new()
 	
-	-- 1. Inicializa o Network (Aponte para sua pasta de Remotes)
-	local remoteFolder = ReplicatedStorage:WaitForChild("Remotes")
-	self.Network = Network.new(nil, true) -- true para modo Debug
+	-- 1. Inicializa o Network
+	self.Network = Network.new(nil, true)
 	
-	-- 2. Inicializa o Banco de Dados Local
+	-- 2. Inicializa o Banco de Dados
 	self.Store = ClientCurrencies.new()
 	self.Maid:Give(self.Store)
 	
-	-- 3. Configura Contratos de Segurança (Exemplos)
-	-- Isso impede que o servidor mande dados lixo e quebre sua UI
+	-- 3. Contratos
 	self.Network:SetContract("UpdateCurrency", {"string", "number"})
-	self.Network:SetContract("BatchUpdate", {"table"}) -- Para atualizar tudo de uma vez
+	self.Network:SetContract("BatchUpdate", {"table"})
 	
-	-- 4. Cria a Ponte de Dados (Data Bridge)
-	-- Sempre que o servidor disparar "UpdateCurrency", o Store atualiza automaticamente
+	-- 4. Ponte de Dados (Data Bridge)
 	self.Network:Listen("UpdateCurrency", function(name: string, amount: number)
 		self.Store:Set(name, amount)
 	end)
@@ -51,8 +46,18 @@ function GameClient.Start()
 		end
 	end)
 
-	print("[GameClient] Framework Inicializado!")
-	return self
+	instance = self :: any
+	print("[GameClient] Framework de Elite Inicializado!")
+	return instance :: GameClientType
+end
+
+-- Função para pegar a instância em outros scripts sem precisar iniciar de novo
+function GameClient.GetInstance(): GameClientType
+	if not instance then
+		return GameClient.Start()
+	end
+	return instance :: GameClientType
 end
 
 return GameClient
+
