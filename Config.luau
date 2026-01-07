@@ -1,12 +1,12 @@
 --!strict
 -- Config.lua
 
--- [[ DEFINIÇÃO DOS TIPOS ]] --
+--DEFINIÇÃO DOS TIPOS --
 
 type UIConfig = {
 	DefaultFadeTime: number,             -- Quanto tempo leva pro menu aparecer/sumir
 	DefaultTweenTime: number,            -- Velocidade padrão de qualquer animação (ex: botão aumentando)
-	DefaultTweenStyle: Enum.EasingStyle, -- O "ritmo" da animação (suave, elástico, etc)
+	DefaultTweenStyle: Enum.EasingStyle, -- Onritmo da animação (suave, elástico, etc)
 	DefaultTweenDirection: Enum.EasingDirection,
 	OverlayFadeTime: number,             -- Velocidade das sombras e fundos pretos atrás das janelas
 	TooltipDelay: number,                -- Quanto tempo o mouse tem que ficar parado pra mostrar a dica
@@ -15,7 +15,7 @@ type UIConfig = {
 }
 
 type TextConfig = {
-	DefaultTypingSpeed: number,          -- Velocidade do efeito de "máquina de escrever" nos textos
+	DefaultTypingSpeed: number,          -- Velocidade do efeito de máquina de escrever nos textos
 	FadeTime: number,                    -- Tempo pro texto sumir suavemente
 }
 
@@ -37,7 +37,7 @@ export type ConfigType = {
 	Debug: DebugConfig,
 }
 
--- [[ CONFIGURAÇÕES REAIS ]] --
+-- CONFIGURAÇÕES REAIS --
 
 local Config: ConfigType = {}
 
