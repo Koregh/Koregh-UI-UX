@@ -6,7 +6,7 @@ local Maid = require(ReplicatedStorage:WaitForChild("Modules"):WaitForChild("Mai
 local ClientCurrencies = {}
 ClientCurrencies.__index = ClientCurrencies
 
--- [Regras de Negócio] Exemplo de limites para moedas específicas
+-- Exemplo de limites para moedas específicas
 local CONSTRAINTS: {[string]: {min: number, max: number}} = {
 	["Level"] = {min = 1, max = 100},
 	["Stamina"] = {min = 0, max = 100},
