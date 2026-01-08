@@ -8,7 +8,6 @@ local NumberUtil = {}
 -- Lista de sufixos para escalas de magnitude (Suporta até Decilhões)
 local SUFFIXES = {"", "K", "M", "B", "T", "Q", "Qi", "Sx", "Sp", "Oc", "No", "Dc"}
 
--- FORMATAÇÃO DE MOEDAS / VALORES --
 
 -- @desc Formata números com sufixos (Ex: 1.5M, -10K)
 -- @param value: O número a ser formatado
@@ -58,7 +57,6 @@ function NumberUtil.FormatCommas(value: number): string
 	return string.gsub(withSpaces, " ", ",")
 end
 
--- FORMATAÇÃO DE TEMPO --
 
 -- @desc Converte segundos em string formatada (Ex: 75 -> "01:15")
 -- @param seconds: Total de segundos
@@ -77,8 +75,6 @@ function NumberUtil.FormatTime(seconds: number, useHours: boolean?): string
 		return string.format("%02d:%02d", m, sec)
 	end
 end
-
--- LÓGICA DE ANIMAÇÃO (MATH) --
 
 -- @desc Interpolação Linear entre dois números
 -- @param start: Valor de origem
