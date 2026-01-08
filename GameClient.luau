@@ -24,18 +24,18 @@ function GameClient.Start(): GameClientType
 	local self = {}
 	self.Maid = Maid.new()
 	
-	-- 1. Inicializa o Network
+	--  Inicializa o Network
 	self.Network = Network.new(nil, true)
 	
-	-- 2. Inicializa o Banco de Dados
+	-- Inicializa o Banco de Dados
 	self.Store = ClientCurrencies.new()
 	self.Maid:Give(self.Store)
 	
-	-- 3. Contratos
+	--  Contratos
 	self.Network:SetContract("UpdateCurrency", {"string", "number"})
 	self.Network:SetContract("BatchUpdate", {"table"})
 	
-	-- 4. Ponte de Dados (Data Bridge)
+	-- Ponte de Dados (Data Bridge)
 	self.Network:Listen("UpdateCurrency", function(name: string, amount: number)
 		self.Store:Set(name, amount)
 	end)
