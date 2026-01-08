@@ -4,8 +4,6 @@
 local Maid = {}
 Maid.__index = Maid
 
---  DEFINIÇÃO DE TIPOS --
-
 export type Maid = {
 	Tasks: {[any]: any},
 	Give: (self: Maid, task: any, key: any?) -> any,
@@ -14,14 +12,10 @@ export type Maid = {
 	Destroy: (self: Maid) -> (),
 }
 
--- CONSTRUTOR --
-
 -- @desc Cria uma nova instância de Maid
 function Maid.new(): Maid
 	return setmetatable({ Tasks = {} }, Maid) :: any
 end
-
---  MÉTODOS PÚBLICOS --
 
 -- @desc Adiciona uma tarefa ao Maid. 
 -- @param task: RBXScriptConnection, Instance, function, thread, ou objeto com Destroy/Disconnect.
