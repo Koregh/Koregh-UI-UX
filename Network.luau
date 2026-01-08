@@ -31,8 +31,6 @@ export type NetworkType = typeof(setmetatable({} :: {
 	_lastCalls: { [string]: number }
 }, Network))
 
--- MÉTODOS PRIVADOS DE AUXÍLIO --
-
 -- Serialização: Transforma tipos pesados em buffers antes de enviar ao servidor
 local function _serialize(data: any): any
 	local t = typeof(data)
@@ -71,7 +69,7 @@ local function _serialize(data: any): any
 	return data
 end
 
--- Deserialização: Transforma buffers recebidos do servidor em tipos Roblox
+--  Transforma buffers recebidos do servidor em tipos
 local function _deserialize(b: any): any
 	if typeof(b) ~= "buffer" then return b end
 	local header = buffer.readu8(b, 0)
@@ -96,7 +94,7 @@ local function _deserialize(b: any): any
 	return b
 end
 
--- Helper: Cópia profunda para evitar mutação de dados
+-- Cópia profunda para evitar mutação de dados
 local function deepCopy(t: any)
 	if type(t) ~= "table" then return t end
 	local res = {}
@@ -104,7 +102,7 @@ local function deepCopy(t: any)
 	return res
 end
 
--- Helper: Validação de Contrato
+-- Validação de Contrato
 local function validateArgs(expected: {string}, actual: {any})
 	for i, t in expected do
 		if typeof(actual[i]) ~= t then
@@ -113,8 +111,6 @@ local function validateArgs(expected: {string}, actual: {any})
 	end
 	return true
 end
-
--- MÉTODOS DE INSTÂNCIA --
 
 function Network.new(remotes: RemoteMap?, debugMode: boolean?): NetworkType
 	local self = setmetatable({
